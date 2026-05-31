@@ -8,7 +8,7 @@ import numpy as np
 # 1. CONFIGURAÇÕES DA INTERFACE E ANIMAÇÃO ALIENÍGENA PREMIUM (CSS + ANIMATIONS)
 # ==============================================================================
 st.set_page_config(
-    page_title="👽 ALIEN X-DATA | Matrix de Monitoramento", 
+    page_title="ALIEN X-DATA | Matrix de Monitoramento", 
     page_icon="👽", 
     layout="wide"
 )
