@@ -66,7 +66,7 @@ st.markdown(f"""
     /* Mudança radical de fundo (Espaço Profundo com Imagem Atmosférica) */
     .stApp {{ 
         background-image: linear-gradient(rgba(5, 2, 15, 0.88), rgba(2, 4, 8, 0.96)), 
-                          url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=2070&auto=format&fit=crop');
+                          url('https://plus.unsplash.com/premium_photo-1669839137069-4166d6ea11f4?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
         background-size: cover !important;
         background-position: center !important;
         background-attachment: fixed !important;
