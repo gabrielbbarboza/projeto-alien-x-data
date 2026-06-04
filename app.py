@@ -7,152 +7,43 @@ import numpy as np
 # ==============================================================================
 # 1. CONFIGURAÇÕES DA INTERFACE E ANIMAÇÃO ALIENÍGENA PREMIUM (CSS + ANIMATIONS)
 # ==============================================================================
-# ==============================================================================
-# 1. CONFIGURAÇÕES DA INTERFACE E ANIMAÇÃO ALIENÍGENA PREMIUM (CSS + ANIMATIONS)
-# ==============================================================================
 st.set_page_config(
-    page_title="ALIEN X-DATA | Planet Express Matrix", 
+    page_title="ALIEN X-DATA | Matrix de Monitoramento", 
     page_icon="👽", 
     layout="wide"
 )
 
-# ... (Mantenha o Painel Lateral e os filtros como estão, apenas mude as cores se quiser) ...
-
-# Injeção de CSS Customizado Futurama-Alienígena
-st.markdown(f"""
-    <style>
-    /* Estilo de Fundo: Desenho Espacial e Cor Sólida */
-    .stApp {{ 
-        background-color: #03060E;
-        background-image: linear-gradient(rgba(3, 6, 14, 0.9), rgba(3, 6, 14, 0.96)), 
-                          url('https://i.imgur.com/8QzX3O4.png'); /* Fundo Espacial Estilo Desenho */
-        background-size: cover;
-        background-attachment: fixed;
-    }}
-    
-    /* Configuração da Barra Lateral com Contorno Sólido */
-    [data-testid="stSidebar"] {{
-        background-color: rgba(5, 8, 18, 0.95) !important;
-        border-right: 3px solid {cor_alien} !important; /* Contorno Sólido e Grosso */
-        border-radius: 0 10px 10px 0;
-    }}
-    
-    /* ... (Animações Orbitais dos OVNIs se mantêm) ... */
-    
-    /* Cabeçalho do Terminal Central Estilo Painel de Nave */
-    .header-container {{
-        background: rgba(4, 8, 20, 0.85);
-        border: 4px solid #FFFFFF; /* Contorno Branco Grosso de Desenho */
-        border-radius: 15px;
-        padding: 25px;
-        margin-bottom: 30px;
-        box-shadow: 0 0 20px {cor_glow}, inset 0 0 10px rgba(255,255,255,0.2); /* Glow Externo e Interno */
-        backdrop-filter: blur(5px);
-        text-align: center;
-        position: relative;
-    }}
-    
-    /* ... (Indicador Pulsante Live se mantém) ... */
-    
-    .main-title {{ 
-        font-family: 'Courier New', Courier, monospace; 
-        font-size: 38px; 
-        font-weight: 900; 
-        color: #FFFFFF; 
-        text-shadow: 2px 2px 0px #000, 0 0 15px {cor_alien}; /* Contorno Preto + Glow */
-        letter-spacing: 2px;
-    }}
-    .subtitle {{ 
-        font-family: 'Courier New', Courier, monospace; 
-        font-size: 14px; 
-        color: #94A3B8; 
-        margin-top: 5px;
-        text-shadow: 1px 1px 0px #000;
-        letter-spacing: 1px;
-    }}
-    
-    /* Cartões de Telemetria com Contorno de Desenho Sólido */
-    .kpi-card {{
-        background: rgba(3, 6, 14, 0.9);
-        border: 3px solid #FFFFFF; /* Contorno Branco Sólido de Desenho */
-        padding: 20px;
-        border-radius: 12px;
-        text-align: center;
-        backdrop-filter: blur(5px);
-        box-shadow: inset 0 0 15px rgba(255,255,255,0.1);
-        transition: all 0.2s ease-in-out;
-    }}
-    .kpi-card:hover {{
-        border-color: {cor_alien};
-        transform: scale(1.03); /* Efeito de Pop ao passar o mouse */
-        box-shadow: 0 8px 25px {cor_glow};
-    }}
-    
-    /* Títulos e Valores dos KPIs */
-    .kpi-label {{ 
-        font-family: 'Courier New', Courier, monospace; 
-        font-size: 13px; 
-        font-weight: bold; 
-        color: #94A3B8; 
-        text-shadow: 1px 1px 0px #000;
-        letter-spacing: 1px;
-    }}
-    .kpi-value {{ 
-        font-family: 'Courier New', Courier, monospace; 
-        font-size: 36px; 
-        font-weight: 900; 
-        color: {cor_alien}; 
-        margin-top: 5px;
-        text-shadow: 2px 2px 0px #000, 0 0 10px {cor_alien}; /* Contorno Preto + Glow */
-    }}
-    
-    /* Abas em formato Command Shell com Contorno Grosso */
-    .stTabs [data-baseweb="tab-list"] {{ gap: 5px; background-color: transparent; }}
-    .stTabs [data-baseweb="tab"] {{
-        background-color: rgba(8, 12, 24, 0.7) !important;
-        border: 3px solid #FFFFFF !important; /* Contorno Branco Grosso */
-        border-radius: 8px 8px 0px 0px !important;
-        padding: 10px 20px !important;
-        font-family: 'Courier New', Courier, monospace !important;
-        color: #94A3B8 !important;
-        font-weight: bold !important;
-        text-shadow: 1px 1px 0px #000;
-        transition: all 0.1s;
-    }}
-    .stTabs [aria-selected="true"] {{ 
-        background-color: rgba(3, 6, 14, 0.98) !important;
-        color: {cor_alien} !important; 
-        border-color: {cor_alien} !important;
-        border-bottom: 3px solid transparent !important;
-        box-shadow: 0 -4px 15px {cor_glow};
-    }}
-    
-    /* Título da Seção (Mapas/Gráficos) */
-    .section-title {{ 
-        font-family: 'Courier New', Courier, monospace; 
-        font-size: 21px; 
-        font-weight: bold; 
-        color: #FFFFFF; 
-        margin-bottom: 15px; 
-        text-shadow: 2px 2px 0px #000, 0 0 8px {cor_alien};
-    }}
-    
-    /* HR com Estilo Sólido */
-    hr {{ border: 2px solid #1E293B; margin: 25px 0; }}
-    
-    /* Estilo para Dataframes e Tabelas: Contorno Grosso */
-    .stDataFrame, div[data-testid="stTable"] table {{
-        border: 3px solid #FFFFFF;
-        border-radius: 8px;
-        overflow: hidden;
-    }}
-    </style>
-
-    <div class="ufo-flyer-1">🛸</div>
-    <div class="ufo-flyer-2">🛸</div>
+# --- PAINEL LATERAL (ESTADO OPERACIONAL) ---
+st.sidebar.markdown("""
+    <h2 style='color: #39FF14; font-family: monospace; text-shadow: 0 0 12px #39FF14; margin-bottom: 0;'>🛸 CONTROL PANEL</h2>
+    <span style='color: #64748B; font-family: monospace; font-size: 11px;'>STATUS: OPERACIONAL // CONEXÃO QUÂNTICA</span>
+    <br><br>
 """, unsafe_allow_html=True)
 
-# --- (Mantenha o código anterior...) ---
+escopo = st.sidebar.radio(
+    "Escopo do Varredura Espacial:",
+    ["Monitoramento Mundial", "Monitoramento Brasil"]
+)
+
+# Inicialização de variáveis de filtragem avançada
+filtrar_pais_especifico = "todos"
+pais_selecionado_nome = "Todos os Paises"
+
+if escopo == "Monitoramento Mundial":
+    st.sidebar.markdown("<hr style='border-color: #8B5CF6;'>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h4 style='color: #8B5CF6; font-family: monospace; letter-spacing: 1px;'>🏳️ ISOLAMENTO GEOGRÁFICO</h4>", unsafe_allow_html=True)
+    
+    opcoes_paises = {
+        "Todos os Países (Global)": "todos",
+        "Estados Unidos (US)": "us",
+        "Canadá (CA)": "ca",
+        "Reino Unido (GB)": "gb",
+        "Austrália (AU)": "au",
+        "Alemanha (DE)": "de"
+    }
+    
+    pais_selecionado_nome = st.sidebar.selectbox("Setor Planetário:", list(opcoes_paises.keys()))
+    filtrar_pais_especifico = opcoes_paises[pais_selecionado_nome]
 
 # Filtros Dinâmicos de Dados na Sidebar
 st.sidebar.markdown("<hr style='border-color: #334155;'>", unsafe_allow_html=True)
@@ -161,20 +52,185 @@ st.sidebar.markdown("<h4 style='color: #94A3B8; font-family: monospace; letter-s
 filtro_anos = st.sidebar.slider("Ciclos Temporais (Anos):", 1930, 2026, (1960, 2026))
 filtro_duracao = st.sidebar.slider("Janela de Contato Máxima (Segundos):", 5, 7200, 3600)
 
-# MOVA ISSO PARA CIMA: Definição Dinâmica de Cores
+# Definição Dinâmica de Cores do Ecossistema Alien baseado no escopo escolhido
 if escopo == "Monitoramento Mundial":
-    cor_alien = "#8B5CF6"
+    cor_alien = "#8B5CF6"          # Roxo Nebulosa
     cor_glow = "rgba(139, 92, 246, 0.4)"
 else:
-    cor_alien = "#39FF14"
+    cor_alien = "#39FF14"          # Verde Plasma
     cor_glow = "rgba(57, 255, 20, 0.4)"
 
-# AGORA, O CSS VAI FUNCIONAR POIS AS VARIÁVEIS JÁ EXISTEM
+# Injeção de CSS Customizado Avançado com Efeitos Holográficos
 st.markdown(f"""
     <style>
-    /* O seu código CSS com {cor_alien} e {cor_glow} entra aqui */
-    ...
+    /* Mudança radical de fundo (Espaço Profundo com Imagem Atmosférica) */
+    .stApp {{ 
+        background-image: linear-gradient(rgba(5, 2, 15, 0.88), rgba(2, 4, 8, 0.96)), 
+                          url('https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=2050&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
+        overflow-x: hidden;
+    }}
+    
+    /* Configuração da Barra Lateral de Comando */
+    [data-testid="stSidebar"] {{
+        background-color: rgba(5, 8, 18, 0.9) !important;
+        border-right: 1px solid {cor_alien} !important;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    }}
+    
+    /* ==========================================
+       ANIMAÇÃO ORBITAL DOS OVNIS NA TELA
+       ========================================== */
+    .ufo-flyer-1, .ufo-flyer-2 {{
+        position: fixed;
+        pointer-events: none;
+        z-index: 99999;
+        font-size: 34px;
+        opacity: 0.8;
+        filter: drop-shadow(0 0 10px {cor_alien});
+    }}
+    
+    .ufo-flyer-1 {{
+        top: 20%;
+        left: -100px;
+        animation: vooHolograficoRapido 25s linear infinite;
+    }}
+    
+    .ufo-flyer-2 {{
+        top: 70%;
+        left: -100px;
+        animation: vooHolograficoLento 38s linear infinite;
+        animation-delay: 6s;
+    }}
+    
+    @keyframes vooHolograficoRapido {{
+        0% {{ left: -100px; transform: translateY(0px) rotate(15deg); }}
+        25% {{ transform: translateY(-30px) rotate(-10deg); }}
+        50% {{ transform: translateY(20px) rotate(20deg); }}
+        75% {{ transform: translateY(-15px) rotate(-5deg); }}
+        100% {{ left: 110vw; transform: translateY(0px) rotate(15deg); }}
+    }}
+    
+    @keyframes vooHolograficoLento {{
+        0% {{ left: -100px; transform: translateY(0px) scale(0.7) rotate(-20deg); }}
+        35% {{ transform: translateY(40px) scale(0.85) rotate(10deg); }}
+        70% {{ transform: translateY(-35px) scale(0.7) rotate(-15deg); }}
+        100% {{ left: 110vw; transform: translateY(0px) scale(0.7) rotate(-20deg); }}
+    }}
+
+    /* Cabeçalho do Terminal Central */
+    .header-container {{
+        background: rgba(4, 8, 20, 0.8);
+        border: 2px solid {cor_alien};
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 0 30px {cor_glow};
+        backdrop-filter: blur(10px);
+        text-align: center;
+        position: relative;
+    }}
+    
+    /* Indicador Pulsante Live */
+    .live-indicator {{
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        width: 10px;
+        height: 10px;
+        background-color: {cor_alien};
+        border-radius: 50%;
+        box-shadow: 0 0 10px {cor_alien};
+        animation: pulsaSinal 1.5s infinite;
+    }}
+    @keyframes pulsaSinal {{
+        0% {{ transform: scale(0.8); opacity: 0.5; }}
+        50% {{ transform: scale(1.3); opacity: 1; }}
+        100% {{ transform: scale(0.8); opacity: 0.5; }}
+    }}
+    
+    .main-title {{ 
+        font-family: 'Courier New', Courier, monospace; 
+        font-size: 36px; 
+        font-weight: 900; 
+        color: #FFFFFF; 
+        text-shadow: 0 0 15px {cor_alien};
+        letter-spacing: 3px;
+    }}
+    .subtitle {{ 
+        font-family: 'Courier New', Courier, monospace; 
+        font-size: 13px; 
+        color: #94A3B8; 
+        margin-top: 8px;
+        letter-spacing: 1px;
+    }}
+    
+    /* Cartões de Telemetria Holográfica (KPIs) */
+    .kpi-card {{
+        background: rgba(3, 6, 14, 0.9);
+        border: 1px dashed {cor_alien};
+        padding: 22px;
+        border-radius: 8px;
+        text-align: center;
+        backdrop-filter: blur(5px);
+        box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }}
+    .kpi-card:hover {{
+        border-style: solid;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px {cor_glow};
+    }}
+    .kpi-label {{ 
+        font-family: 'Courier New', Courier, monospace; 
+        font-size: 12px; 
+        font-weight: bold; 
+        color: #64748B; 
+        letter-spacing: 2px;
+    }}
+    .kpi-value {{ 
+        font-family: 'Courier New', Courier, monospace; 
+        font-size: 34px; 
+        font-weight: 900; 
+        color: {cor_alien}; 
+        margin-top: 5px;
+        text-shadow: 0 0 10px {cor_alien};
+    }}
+    
+    /* Abas em formato Command Shell */
+    .stTabs [data-baseweb="tab-list"] {{ gap: 8px; background-color: transparent; }}
+    .stTabs [data-baseweb="tab"] {{
+        background-color: rgba(8, 12, 24, 0.6) !important;
+        border: 1px solid #1E293B !important;
+        border-radius: 4px 4px 0px 0px !important;
+        padding: 12px 24px !important;
+        font-family: 'Courier New', Courier, monospace !important;
+        color: #64748B !important;
+        font-weight: bold !important;
+    }}
+    .stTabs [aria-selected="true"] {{ 
+        background-color: rgba(3, 6, 14, 0.95) !important;
+        color: {cor_alien} !important; 
+        border: 1px solid {cor_alien} !important;
+        border-bottom: 1px solid transparent !important;
+        box-shadow: 0 -4px 12px {cor_glow};
+    }}
+    
+    hr {{ border-color: #1E293B; margin: 25px 0; }}
+    .section-title {{ 
+        font-family: 'Courier New', Courier, monospace; 
+        font-size: 19px; 
+        font-weight: bold; 
+        color: #FFFFFF; 
+        margin-bottom: 15px; 
+        text-shadow: 0 0 6px {cor_alien};
+    }}
     </style>
+
+    <div class="ufo-flyer-1">🛸</div>
+    <div class="ufo-flyer-2">🛸</div>
 """, unsafe_allow_html=True)
 
 # Configurações Avançadas e Corretas de Temas para Gráficos Matplotlib
