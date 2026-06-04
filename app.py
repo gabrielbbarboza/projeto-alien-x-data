@@ -152,6 +152,31 @@ st.markdown(f"""
     <div class="ufo-flyer-2">🛸</div>
 """, unsafe_allow_html=True)
 
+# --- (Mantenha o código anterior...) ---
+
+# Filtros Dinâmicos de Dados na Sidebar
+st.sidebar.markdown("<hr style='border-color: #334155;'>", unsafe_allow_html=True)
+st.sidebar.markdown("<h4 style='color: #94A3B8; font-family: monospace; letter-spacing: 1px;'>🎛️ FILTROS DE FREQUÊNCIA</h4>", unsafe_allow_html=True)
+
+filtro_anos = st.sidebar.slider("Ciclos Temporais (Anos):", 1930, 2026, (1960, 2026))
+filtro_duracao = st.sidebar.slider("Janela de Contato Máxima (Segundos):", 5, 7200, 3600)
+
+# MOVA ISSO PARA CIMA: Definição Dinâmica de Cores
+if escopo == "Monitoramento Mundial":
+    cor_alien = "#8B5CF6"
+    cor_glow = "rgba(139, 92, 246, 0.4)"
+else:
+    cor_alien = "#39FF14"
+    cor_glow = "rgba(57, 255, 20, 0.4)"
+
+# AGORA, O CSS VAI FUNCIONAR POIS AS VARIÁVEIS JÁ EXISTEM
+st.markdown(f"""
+    <style>
+    /* O seu código CSS com {cor_alien} e {cor_glow} entra aqui */
+    ...
+    </style>
+""", unsafe_allow_html=True)
+
 # Configurações Avançadas e Corretas de Temas para Gráficos Matplotlib
 plt.rcParams['figure.facecolor'] = '#03060E'  
 plt.rcParams['axes.facecolor'] = (4/255, 8/255, 20/255, 0.5)    
