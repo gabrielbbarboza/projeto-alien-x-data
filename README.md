@@ -42,3 +42,6 @@ ufo_fixed/
 ├── config/
 
 └── requirements.txt    
+
+link do streamlit: 
+https://projeto-alien-x-data.streamlit.app/
